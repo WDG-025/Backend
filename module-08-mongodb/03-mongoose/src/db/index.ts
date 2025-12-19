@@ -10,3 +10,23 @@ try {
   console.error("❌ MongoDB connection error: ", error);
   process.exit(1);
 }
+
+// ! Without `!` and a better error handling with a helper function - the "Patrick" way:
+
+// function getEnv(key: string): string {
+//   const value = process.env[key];
+//   if (!value) throw new Error(`Missing env var: ${key}`);
+//   return value;
+// }
+
+// const connectDB = async () => {
+//   try {
+//     const conn = await mongoose.connect(getEnv("MONGO_URI"));
+//     console.log(`✔️ MongoDB Connected: ${conn.connection.host}`);
+//   } catch (error) {
+//     console.error("❌ MongoDB connection error:", error);
+//     process.exit(1);
+//   }
+// };
+
+// await connectDB();
