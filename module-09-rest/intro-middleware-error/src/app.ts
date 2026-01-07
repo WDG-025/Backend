@@ -21,6 +21,11 @@ app.use(logger);
 // app.get('/error-from-async', async (req, res) => {
 //   throw new Error('throwing openly in async code');
 // });
+//
+
+// app.get('/error', (req, res) => {
+//   throw new Error('Request failed');
+// });
 
 app.use('/users', userRouter);
 app.use('/posts', postRouter);
