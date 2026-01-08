@@ -1,14 +1,14 @@
 import { Router, type NextFunction, type Request, type Response } from 'express';
 import { getPosts, createPost, getPostById, updatePost, deletePost } from '#controllers';
 import { authMiddleWare, validateBodyZod, validatePost } from '#middlewares';
-import { postSchema } from '#schemas';
+import { postInputSchema } from '#schemas';
 
 const postRouter = Router();
 
 postRouter.get('/', getPosts);
-postRouter.post('/', validateBodyZod(postSchema), authMiddleWare, createPost);
+postRouter.post('/', validateBodyZod(postInputSchema), authMiddleWare, createPost);
 postRouter.get('/:id', getPostById);
-postRouter.put('/:id', validateBodyZod(postSchema), authMiddleWare, updatePost);
+postRouter.put('/:id', validateBodyZod(postInputSchema), authMiddleWare, updatePost);
 postRouter.delete('/:id', authMiddleWare, deletePost);
 
 //alternative
