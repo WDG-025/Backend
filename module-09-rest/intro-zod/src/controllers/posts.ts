@@ -19,7 +19,7 @@ export const createPost: RequestHandler<{}, PostDTO, PostInputDTO> = async (req,
   res.json(populatedPost);
 };
 
-export const getPostById: RequestHandler<{ id: string }> = async (req, res) => {
+export const getPostById: RequestHandler<{ id: string }, {}, PostDTO> = async (req, res) => {
   const {
     params: { id }
   } = req;
