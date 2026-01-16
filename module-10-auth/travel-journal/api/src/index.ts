@@ -8,7 +8,7 @@ import cookieParser from 'cookie-parser';
 const app = express();
 const port = process.env.PORT || 8000;
 
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 app.use(express.json(), cookieParser());
 
 app.get('/admin', authenticate, isAdmin, (req, res) => {

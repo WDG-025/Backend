@@ -9,7 +9,7 @@ const basePasswordSchema = z
   .max(512, { error: 'The length of this Password is excessive.' });
 
 export const registerSchema = z
-  .object(
+  .strictObject(
     {
       email: emailSchema,
       password: basePasswordSchema
@@ -22,7 +22,7 @@ export const registerSchema = z
       confirmPassword: z.string(),
       firstName: z.string().min(1).max(50).optional(),
       lastName: z.string().min(1).max(50).optional(),
-      roles: z.array(z.string())
+      roles: z.array(z.string()).optional()
     },
     { error: 'Please provide a valid email and a secure password.' }
   )
