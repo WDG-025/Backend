@@ -1,6 +1,23 @@
 import type { Response } from "express";
 import OpenAI from "openai";
 import type { ChatCompletionCreateParamsNonStreaming } from "openai/resources";
+import Pokedex, { type Pokemon } from "pokedex-promise-v2";
+import type { ErrorResponseDTO } from "#types";
+
+export const getPokemon = async ({ pokemonName }: { pokemonName: string }): Promise<Pokemon> => {
+  console.log(`\x1b[35mFunktion get_pokemon aufgerufen mit: ${pokemonName}\x1b[0m`);
+
+  const P = new Pokedex();
+  return await P.getPokemonByName(pokemonName.toLowerCase());
+};
+
+export const returnError = async ({ message }: { message: string }): Promise<ErrorResponseDTO> => {
+  console.error(`\x1b[31mFehler: ${message}\x1b[0m`);
+  return {
+    succes: false,
+    error: message,
+  };
+};
 
 export const createOpenAICompletion = async (
   client: OpenAI,
