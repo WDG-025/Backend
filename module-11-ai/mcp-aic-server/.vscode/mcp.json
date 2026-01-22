@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "mcp-aic-server": {
+      "command": "node",
+      "args": ["/home/kawa/Work/WDG25-BE/module-11-ai/mcp-aic-server/dist/app.js"]
+    }
+  }
+}
