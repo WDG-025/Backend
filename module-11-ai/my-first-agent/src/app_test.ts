@@ -33,6 +33,12 @@ const model =
     new OpenAIChatCompletionsModel(client, process.env.LLM_MODEL!)
   : process.env.LLM_MODEL!;
 
+// Define a lighter model for guardrail checks (faster, cheaper)
+const cheapModel =
+  process.env.NODE_ENV === "development" ?
+    new OpenAIChatCompletionsModel(client, process.env.LLM_CHEAP_MODEL!)
+  : process.env.LLM_CHEAP_MODEL!;
+
 // # --- Handoffs with three Agents + Guardrail ---
 
 // Guardrail Agent
@@ -40,7 +46,7 @@ const guardrailAgent = new Agent({
   name: "Guardrail check",
   instructions:
     "We sell pillows. If the input is remotely about pillows return isNotAboutPillows: false, otherwise return true.",
-  model,
+  model: cheapModel,
   outputType: z.object({
     isNotAboutPillows: z.boolean(),
     reasoning: z.string(),
@@ -84,6 +90,9 @@ const triageAgent = Agent.create({
         If the customer's tone is negative, route it to the escalation control agent.
         `,
   model,
+  modelSettings: {
+    reasoning: { effort: "none" },
+  },
   inputGuardrails: [pillowGuardrails],
   handoffs: [
     customerSupportAgent,
