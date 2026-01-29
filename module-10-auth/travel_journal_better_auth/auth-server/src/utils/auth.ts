@@ -26,6 +26,10 @@ export const auth = betterAuth({
     defaultCookieAttributes: {
       sameSite: 'none',
       secure: true
+    },
+    crossSubDomainCookies: {
+      enabled: true,
+      domain: 'onrender.com'
     }
   }
 });
