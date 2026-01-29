@@ -16,7 +16,6 @@ app.use(
   })
 );
 app.use(express.json(), cookieParser());
-app.options('/posts', cors());
 app.use('/posts', postsRouter);
 
 app.get('/admin', authenticate, (req, res) => {
