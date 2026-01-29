@@ -5,7 +5,7 @@ import { db, client } from '../db.ts';
 export const auth = betterAuth({
   database: mongodbAdapter(db, { client: client }),
   emailAndPassword: { enabled: true },
-  baseURL: 'http://localhost:5173',
+  baseURL: process.env.CLIENT_BASE_URL,
   session: {
     cookieCache: {
       enabled: true,
