@@ -9,6 +9,8 @@ import { auth } from '#utils';
 const app = express();
 const port = process.env.PORT || '3000';
 
+console.log('test for automatic deploy');
+
 app.use(
   cors({
     origin: CLIENT_BASE_URL, // for use with credentials, origin(s) need to be specified
