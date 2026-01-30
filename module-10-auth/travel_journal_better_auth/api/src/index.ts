@@ -8,6 +8,8 @@ import { postsRouter } from '#routes';
 const app = express();
 const port = process.env.PORT || 8000;
 
+console.log('test automatic deploy');
+
 app.use(
   cors({
     origin: process.env.CLIENT_BASE_URL,
